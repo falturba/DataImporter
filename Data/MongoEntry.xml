@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import-request xmlns="http://www.phi01tech.com/tools/data-import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.phi01tech.com/tools/data-import data-import.xsd ">
+	<connection-settings>
+		<username>root</username>
+		<password>1234</password>
+		<url>mongodb://localhost:27017/sample</url>
+		<driverClassName>mongodb.jdbc.MongoDriver</driverClassName>
+	</connection-settings>
+	<data>
+		<departments dept_no="d009000" dept_name="Customer Service" />
+		<departments dept_no="d005000" dept_name="Development" />
+	</data>
+</import-request>

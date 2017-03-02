@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<importer-settings
+	xmlns="http://www.phi01tech.com/tools/data-import"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.phi01tech.com/tools/data-import ./data-import.xsd ">
+
+<import-setting>
+		<source-path>/Users/fawaz/Developer/DataImporter2/Data</source-path>
+		<success-path>/Users/fawaz/Developer/DataImporter2/Data/success</success-path>
+		<error-path>/Users/fawaz/Developer/DataImporter2/Data/errors</error-path>
+</import-setting>
+<import-setting>
+		<source-path>/Users/fawaz/Developer/DataImporter2/Data2</source-path>
+		<success-path>/Users/fawaz/Developer/DataImporter2/Data2/success</success-path>
+		<error-path>/Users/fawaz/Developer/DataImporter2/Data2/errors</error-path>
+</import-setting>
+
+</importer-settings>
