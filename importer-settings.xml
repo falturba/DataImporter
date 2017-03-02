@@ -5,14 +5,14 @@
 	xsi:schemaLocation="http://www.phi01tech.com/tools/data-import ./data-import.xsd ">
 
 <import-setting>
-		<source-path>/Users/fawaz/Developer/DataImporter2/Data</source-path>
-		<success-path>/Users/fawaz/Developer/DataImporter2/Data/success</success-path>
-		<error-path>/Users/fawaz/Developer/DataImporter2/Data/errors</error-path>
+		<source-path>/Users/fawaz/Developer/DataImporter/Data</source-path>
+		<success-path>/Users/fawaz/Developer/DataImporter/Data/success</success-path>
+		<error-path>/Users/fawaz/Developer/DataImporter/Data/errors</error-path>
 </import-setting>
 <import-setting>
-		<source-path>/Users/fawaz/Developer/DataImporter2/Data2</source-path>
-		<success-path>/Users/fawaz/Developer/DataImporter2/Data2/success</success-path>
-		<error-path>/Users/fawaz/Developer/DataImporter2/Data2/errors</error-path>
+		<source-path>/Users/fawaz/Developer/DataImporter/Data2</source-path>
+		<success-path>/Users/fawaz/Developer/DataImporter/Data2/success</success-path>
+		<error-path>/Users/fawaz/Developer/DataImporter/Data2/errors</error-path>
 </import-setting>
 
 </importer-settings>
