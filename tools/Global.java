@@ -1,5 +1,5 @@
 package tools;
-final class Global
+public final class Global
 {
 	private static String CURRENT_DIR = System.getProperty("user.dir");
 	public static String[] TABLES = {"departments","employees"};

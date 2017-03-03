@@ -8,7 +8,7 @@
 		<driverClassName>com.mysql.jdbc.Driver</driverClassName>
 	</connection-settings>
 	<data>
-		<departments dept_no="d009000" dept_name="Customer Service" />
-		<departments dept_no="d005000" dept_name="Development" />
+		<departments dept_no="d00900000" dept_name="Customer Service" />
+		<departments dept_no="d00500000" dept_name="Development" />
 	</data>
 </import-request>

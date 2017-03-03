@@ -1,0 +1,11 @@
+root,1234,jdbc:mysql://localhost:3306/sample,com.mysql.jdbc.Driver
+table#department,dept_no,dept_name
+d009,Customer Service
+d005,Development
+d002,Finance
+d003,Human Resources
+d001,Marketing
+d004,Production
+d006,Quality Management
+d008,Research
+d007,Sales

@@ -8,7 +8,7 @@ import java.sql.Connection;
 import javax.naming.InitialContext;
 import java.sql.DriverManager;
 import java.util.*;
- class MySqlDriver
+public class MySqlDriver
 {
 	public static int execute(DataEntry dataEntry,DataFileHandlerResult result)
 	{
@@ -35,18 +35,18 @@ import java.util.*;
 			}catch(SQLNonTransientConnectionException e)
 			{
 				System.out.println(e.getMessage());
-				result.errors.add(new ErrorMessage("The database doesn't reponse",ErrorType.CONNECTION_ERROR));
+				result.errors.add(new ErrorMessage("The database doesn't reponse",ErrorMessage.ErrorType.CONNECTION_ERROR));
 				result.endTime = new Date();
 				return 0;
 			
 			}catch(SQLException e)
 			{
 				System.out.println(e.getMessage());
-				result.errors.add(new ErrorMessage("Failed to connect to the database",ErrorType.CONNECTION_ERROR));
+				result.errors.add(new ErrorMessage("Failed to connect to the database",ErrorMessage.ErrorType.CONNECTION_ERROR));
 				result.endTime = new Date();
 				return 0;
 			}
-			for(RecordEntry recordEntry: dataEntry.getRecordEntries())
+			for(DataEntry.RecordEntry recordEntry: dataEntry.getRecordEntries())
 			{
 				Map<String,String> record = recordEntry.getRecord();
 				StringBuilder coulmnsNames = new StringBuilder();
@@ -65,7 +65,7 @@ import java.util.*;
 					inserted += stmt.executeUpdate("INSERT INTO "+recordEntry.getTable()+" ("+coulmnsNames.toString()+") VALUES ("+values.toString()+")");
 			 	}catch(SQLException e) 
 			 	{
-			 		result.errors.add(new ErrorMessage(recordEntry,e.getMessage(),ErrorType.DATA_ERROR));
+			 		result.errors.add(new ErrorMessage(recordEntry,e.getMessage(),ErrorMessage.ErrorType.DATA_ERROR));
 			 	}
 			}
 

@@ -15,7 +15,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import java.util.Map;
 
-class XMLReportGenerator
+public class XMLReportGenerator
 {
 	public static void generateReport(DataFileHandlerResult res,String path)
 	{
@@ -63,7 +63,7 @@ class XMLReportGenerator
 					Element messageElement = doc.createElement("error-message");
 					messageElement.setTextContent(error.message);
 					errorElement.appendChild(messageElement);
-					if(error.type == ErrorType.DATA_ERROR)
+					if(error.type == ErrorMessage.ErrorType.DATA_ERROR)
 					{
 						Element dataRecordElement = doc.createElement("data-record");
 						errorElement.appendChild(dataRecordElement);

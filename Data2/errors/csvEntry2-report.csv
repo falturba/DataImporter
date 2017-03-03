@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <import-report xmlns="http://www.phi01tech.com/tools/data-import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phi01tech.com/tools/data-import ./data-import.xsd">
-  <result>SUCCESS</result>
-  <start-time>2017-03-02T05:20:33</start-time>
-  <end-time>2017-03-02T05:20:33</end-time>
+  <result>FAILED</result>
+  <start-time>2017-03-02T05:32:24</start-time>
+  <end-time>2017-03-02T05:32:24</end-time>
+  <errors>
+    <PARSING_ERROR>
+      <error-message>The number of values don't equal the number of columns</error-message>
+    </PARSING_ERROR>
+  </errors>
 </import-report>

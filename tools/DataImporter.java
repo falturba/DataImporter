@@ -32,52 +32,10 @@ public class DataImporter
 		}
 		for(int s=0;s<settings.length;s++)
 		{
-			handlePreExistingFiles(settings[s]);
 			WatchThread watchThread = new WatchThread(settings[s]);
 			watchThread.start();
 		}
 
-
-
-
-
-	}
-	static void handlePreExistingFiles(ImportSettings setting)
-	{
-		File sourcePath = new File(setting.sourcePath);
-		File[] files = sourcePath.listFiles();
-		for(File file : files)
-		{
-			DataFileHandlerResult res = DataFileHandler.handleDataFile(file);
-			if(res.supportedFile)
-			{
-				String fileName = file.getName();
-				if(res.insertionResult == InsertionResult.SUCCESS)
-				{
-					try
-					{
-						Files.move(Paths.get(setting.sourcePath+"/"+fileName), Paths.get(setting.successPath+"/"+fileName),StandardCopyOption.REPLACE_EXISTING);
-					}catch(IOException e)
-					{
-						System.out.println("Error moving the file "+fileName+" from "+setting.sourcePath+" \n\n to \n\n"+setting.successPath);
-						e.printStackTrace();
-					}
-					XMLReportGenerator.generateReport(res,setting.successPath);
-				}
-				else if(res.insertionResult == InsertionResult.PARTIALLY||res.insertionResult == InsertionResult.FAILED)
-				{
-					try
-					{
-						Files.move(Paths.get(setting.sourcePath+"/"+fileName), Paths.get(setting.errorPath+"/"+fileName),StandardCopyOption.REPLACE_EXISTING);
-					}catch(IOException e)
-					{
-						System.out.println("Error moving the file "+fileName+" from \n\n"+setting.sourcePath+" \n\n to \n\n"+setting.errorPath+"\n\n");
-						e.printStackTrace();
-					}
-					XMLReportGenerator.generateReport(res,setting.errorPath);
-				}
-			}
-		}
 	}
 
 }

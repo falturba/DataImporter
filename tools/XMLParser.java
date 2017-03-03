@@ -6,7 +6,7 @@ import javax.xml.parsers.*;
 import org.xml.sax.SAXException;
 import java.util.*;
 
-class  XMLParser
+public class XMLParser
 {
 
 	public static DataEntry parseDataXML(File file) throws ParserConfigurationException,SAXException,IOException

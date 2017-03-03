@@ -1,7 +1,25 @@
 package tools;
 import java.util.*;
-class DataEntry
+public class DataEntry
 {
+	public class RecordEntry
+	{
+		private Map<String,String> record;
+		private String table;
+		public RecordEntry(Map<String,String> record,String table)
+		{
+			this.record = record;
+			this.table = table;
+		}
+		public Map<String,String> getRecord()
+		{
+			return record;
+		}
+		public String getTable()
+		{
+			return table;
+		}
+	}
 	private String url;
 	private String username;
 	private String password;
@@ -51,21 +69,4 @@ class DataEntry
 		return length;
 	}
 }
-class RecordEntry
-{
-	private Map<String,String> record;
-	private String table;
-	public RecordEntry(Map<String,String> record,String table)
-	{
-		this.record = record;
-		this.table = table;
-	}
-	Map<String,String> getRecord()
-	{
-		return record;
-	}
-	String getTable()
-	{
-		return table;
-	}
-}
+
