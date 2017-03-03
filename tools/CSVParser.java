@@ -7,6 +7,8 @@ public class CSVParser
 {
 	public static DataEntry parseDataCSV(File file) throws ParseException,IOException
 	{
+		try
+		{
 		int lineNumber = 0; //Used to track parsing error location
 		BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
 		
@@ -55,6 +57,12 @@ public class CSVParser
 				}
 			}
 			return dataEntry;
+			
+		}finally{
+			br.close();
+			}
+		
+			
 	}
 }
 
