@@ -2,13 +2,15 @@ package tools;
 import java.util.*;
 import org.xml.sax.SAXException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.io.File;
 import java.text.ParseException;
 import javax.xml.parsers.ParserConfigurationException;
-
 public class DataFileHandler
 {
-	public static DataFileHandlerResult handleDataFile(File file)
+	public static void handleDataFile(File file,ImportSettings setting)
 	{
 		DataFileHandlerResult result = new DataFileHandlerResult();
 		result.startTime = new Date();
@@ -29,7 +31,7 @@ public class DataFileHandler
 				result.insertionResult = DataFileHandlerResult.InsertionResult.FAILED;
 				result.errors.add(new ErrorMessage("Error while parsing the xml file",ErrorMessage.ErrorType.PARSING_ERROR));
 				result.endTime = new Date();
-				return result;
+				
 			}
 		}else if(extension.equals("csv"))
 		{
@@ -44,7 +46,6 @@ public class DataFileHandler
 				result.errors.add(new ErrorMessage(e.getMessage(),ErrorMessage.ErrorType.PARSING_ERROR));
 				result.endTime = new Date();
 				e.printStackTrace();
-				return result;
 			}
 		}
 		else
@@ -58,7 +59,6 @@ public class DataFileHandler
 			{
 				result.insertionResult = DataFileHandlerResult.InsertionResult.SUCCESS;
 				result.endTime = new Date();
-				return result;
 			}
 			else
 			{
@@ -76,7 +76,6 @@ public class DataFileHandler
 					result.insertionResult = DataFileHandlerResult.InsertionResult.FAILED;
 					result.errors.add(new ErrorMessage("Driver is not supported",ErrorMessage.ErrorType.CONNECTION_ERROR));
 					result.endTime = new Date();
-					return result;
 				}
 				if(inserted == 0)
 					result.insertionResult = DataFileHandlerResult.InsertionResult.FAILED;
@@ -90,7 +89,37 @@ public class DataFileHandler
 		}
 
 		result.endTime = new Date();
-		return result;
+		processFile(result,file.getName(),setting);
+	}
+	private static void processFile(DataFileHandlerResult res,String fileName,ImportSettings setting)
+	{
+		if(res.supportedFile)
+		{
+			if(res.insertionResult == DataFileHandlerResult.InsertionResult.SUCCESS)
+			{
+				try
+				{
+					Files.move(Paths.get(setting.sourcePath+"/"+fileName), Paths.get(setting.successPath+"/"+fileName),StandardCopyOption.REPLACE_EXISTING);
+				}catch(IOException e)
+				{
+					System.out.println("Error moving the file "+fileName+" from "+setting.sourcePath+" \n\n to \n\n"+setting.successPath);
+					e.printStackTrace();
+				}
+				XMLReportGenerator.generateReport(res,setting.successPath);
+			}
+			else if(res.insertionResult == DataFileHandlerResult.InsertionResult.PARTIALLY||res.insertionResult == DataFileHandlerResult.InsertionResult.FAILED)
+			{
+				try
+				{
+					Files.move(Paths.get(setting.sourcePath+"/"+fileName), Paths.get(setting.errorPath+"/"+fileName),StandardCopyOption.REPLACE_EXISTING);
+				}catch(IOException e)
+				{
+					System.out.println("Error moving the file "+fileName+" from \n\n"+setting.sourcePath+" \n\n to \n\n"+setting.errorPath+"\n\n");
+					e.printStackTrace();
+				}
+				XMLReportGenerator.generateReport(res,setting.errorPath);
+			}
+		}
 	}
 
 

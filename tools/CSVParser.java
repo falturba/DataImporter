@@ -7,10 +7,11 @@ public class CSVParser
 {
 	public static DataEntry parseDataCSV(File file) throws ParseException,IOException
 	{
+		BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
 		try
 		{
-		int lineNumber = 0; //Used to track parsing error location
-		BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
+		int lineNumber = 1; //Used to track parsing error location
+		
 		
 			String [] connection = br.readLine().split(","); lineNumber++;
 
@@ -20,7 +21,6 @@ public class CSVParser
 			}
 			DataEntry dataEntry = new DataEntry(connection[2],connection[3],connection[0],connection[1]);
 			String table="";
-			Map<String,String> record = new HashMap<String,String>();
 			List<String> columns = new ArrayList<String>();
 			String line = "";
 			while ((line = br.readLine()) != null) 
@@ -29,12 +29,7 @@ public class CSVParser
 				String[] values = line.split(",");
 				if(values[0].contains("table#"))
 				{
-					if(!table.equals(""))
-					{
-						dataEntry.addRecordEntry(record,table);
-						record.clear();
-						columns.clear();
-					}
+					columns.clear();
 					table = values[0].split("#")[1];
 					for (int i=1;i<values.length;i++)
 					{
@@ -50,10 +45,12 @@ public class CSVParser
 						System.out.println(columns.size());
 						throw new ParseException("The number of values don't equal the number of columns",lineNumber);
 					}
+					Map<String,String> record = new HashMap<String,String>();
 					for(int i=0;i<values.length;i++)
 					{
 						record.put(columns.get(i),values[i]);
 					}
+					dataEntry.addRecordEntry(record,table);
 				}
 			}
 			return dataEntry;

@@ -1,11 +1,12 @@
 package tools;
 import org.xml.sax.SAXException;
+
+
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.io.File;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 import javax.xml.parsers.ParserConfigurationException;
-import java.nio.file.StandardCopyOption;
 
 public class DataImporter
 {
@@ -30,6 +31,7 @@ public class DataImporter
 			ex.printStackTrace();
 			System.exit(0);
 		}
+		Logger.getLogger("org.mongodb.driver").setLevel(Level.SEVERE);
 		for(int s=0;s<settings.length;s++)
 		{
 			WatchThread watchThread = new WatchThread(settings[s]);

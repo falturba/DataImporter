@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.phi01tech.com/tools/data-import ./data-import.xsd ">
 
 <import-setting>
-		<source-path>/Users/fawaz/Developer/DataImporter/Data</source-path>
-		<success-path>/Users/fawaz/Developer/DataImporter/Data/success</success-path>
-		<error-path>/Users/fawaz/Developer/DataImporter/Data/errors</error-path>
+		<source-path>/Users/www/Developer/DataImporter/Data</source-path>
+		<success-path>/Users/www/Developer/DataImporter/Data/success</success-path>
+		<error-path>/Users/www/Developer/DataImporter/Data/errors</error-path>
 </import-setting>
 <import-setting>
 		<source-path>/Users/fawaz/Developer/DataImporter/Data2</source-path>

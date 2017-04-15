@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<import-report xmlns="http://www.phi01tech.com/tools/data-import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phi01tech.com/tools/data-import ./data-import.xsd">
+  <result>FAILED</result>
+  <start-time>2017-03-03T12:09:21</start-time>
+  <end-time>2017-03-03T12:10:10</end-time>
+  <errors>
+    <DATA_ERROR>
+      <error-message>Duplicate entry 'd00900000' for key 'PRIMARY'</error-message>
+      <data-record>
+        <departments dept_name="Customer Service" dept_no="d00900000"/>
+      </data-record>
+    </DATA_ERROR>
+    <DATA_ERROR>
+      <error-message>Duplicate entry 'd00500000' for key 'PRIMARY'</error-message>
+      <data-record>
+        <departments dept_name="Development" dept_no="d00500000"/>
+      </data-record>
+    </DATA_ERROR>
+  </errors>
+</import-report>

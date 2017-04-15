@@ -1,1 +1,0 @@
-.:/Users/fawaz/Developer/DataImporter/libs/mysql-connector-java-5.1.41-bin.jar:/Users/fawaz/Developer/DataImporter/libs/mongo-java-driver-3.4.2.jar:

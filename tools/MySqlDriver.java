@@ -1,11 +1,8 @@
 package tools;
 import java.sql.Statement;
-import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientConnectionException;
-import java.sql.ResultSet;
 import java.sql.Connection;
-import javax.naming.InitialContext;
 import java.sql.DriverManager;
 import java.util.*;
 public class MySqlDriver
@@ -18,7 +15,8 @@ public class MySqlDriver
 		}catch(ClassNotFoundException e)
 		{
 			System.out.println("Driver Class NotFound");
-			e.printStackTrace();
+			result.errors.add(new ErrorMessage(e.getMessage(),ErrorMessage.ErrorType.CONNECTION_ERROR));
+			result.endTime = new Date();
 			return 0;
 		}
 		Connection con = null;

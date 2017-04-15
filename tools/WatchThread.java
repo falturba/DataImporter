@@ -2,7 +2,6 @@ package tools;
 import java.nio.file.*;
 import java.io.File;
 import java.io.*;
-import tools.MySqlDriver;
 import static java.nio.file.StandardWatchEventKinds.*;
 public class WatchThread extends Thread
 {
@@ -21,7 +20,7 @@ public class WatchThread extends Thread
 			}catch (IOException e)
 			{
 				System.out.println("Error while watching the directory:\n");
-				e.getMessage();
+				System.out.print(e.getMessage());
 			}
 		}
 		else
@@ -38,10 +37,12 @@ public class WatchThread extends Thread
 		{
 			File sourcePath = new File(setting.sourcePath);
 			File[] files = sourcePath.listFiles();
+	
 			for(File file : files)
 			{
-				processFile(file.getName());
+				DataFileHandler.handleDataFile(file,setting);  //handle preexisting files
 			}
+		
 			try
 			{
 				System.out.println("Watcher is waiting for an event ...");
@@ -63,7 +64,8 @@ public class WatchThread extends Thread
 					}
 					@SuppressWarnings("unchecked")
 					WatchEvent<Path> ev = (WatchEvent<Path>)event;
-					processFile(ev.context().toString());
+					File dataFile = new File(this.setting.sourcePath+"/"+ev.context());
+				    DataFileHandler.handleDataFile(dataFile,setting);
 
 				}
 			}
@@ -71,39 +73,5 @@ public class WatchThread extends Thread
 		}
 
 	}
-	void processFile(String fileName)
-	{
-		
-		File dataFile = new File(this.setting.sourcePath+"/"+fileName);
-		DataFileHandlerResult res = DataFileHandler.handleDataFile(dataFile);
-		if(res.supportedFile)
-		{
-			if(res.insertionResult == DataFileHandlerResult.InsertionResult.SUCCESS)
-			{
-				try
-				{
-					Files.move(Paths.get(setting.sourcePath+"/"+fileName), Paths.get(setting.successPath+"/"+fileName),StandardCopyOption.REPLACE_EXISTING);
-				}catch(IOException e)
-				{
-					System.out.println("Error moving the file "+fileName+" from "+setting.sourcePath+" \n\n to \n\n"+setting.successPath);
-					e.printStackTrace();
-				}
-				XMLReportGenerator.generateReport(res,setting.successPath);
-			}
-			else if(res.insertionResult == DataFileHandlerResult.InsertionResult.PARTIALLY||res.insertionResult == DataFileHandlerResult.InsertionResult.FAILED)
-			{
-				try
-				{
-					Files.move(Paths.get(setting.sourcePath+"/"+fileName), Paths.get(setting.errorPath+"/"+fileName),StandardCopyOption.REPLACE_EXISTING);
-				}catch(IOException e)
-				{
-					System.out.println("Error moving the file "+fileName+" from \n\n"+setting.sourcePath+" \n\n to \n\n"+setting.errorPath+"\n\n");
-					e.printStackTrace();
-				}
-				XMLReportGenerator.generateReport(res,setting.errorPath);
-			}
-		}
-		
-}
 
 }
