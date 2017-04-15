@@ -1,7 +1,9 @@
 # DataImporter
 
-This is a tool to observe multiaple directories. Fetch any new file (CML or CSV) and insert all the data into either (MySQL or MongoDB).
-It's scalable to support different kind of files and databases. It will generate a report with all the results:
+
+
+This is a tool to observe multiaple directories. Fetch any new file (XML or CSV) and insert all the data into either (MySQL or MongoDB). It's scalable to support different kind of files and databases. It will generate a report with:
+
 1) Succesfully inserted all the documents (how many)
 2) Partialy failed to insert with a reason why for each row (for example duplicate primary key, or failed to connect to the database).
 3) Failed to insert all the data
