@@ -37,7 +37,9 @@ To run the tool:
 </import-setting>
 
 3) Then simply run these commands
+
       `javac tools/*.java`
+      
       `java tools.DataImporter importer-settings.xml`
       
 
